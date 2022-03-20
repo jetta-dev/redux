@@ -131,9 +131,9 @@ export default function combineReducers(reducers) {
   // This is used to make sure we don't warn about the same
   // keys multiple times.
   let unexpectedKeyCache
-  if (process.env.NODE_ENV !== 'production') {
-    unexpectedKeyCache = {}
-  }
+  // if (process.env.NODE_ENV !== 'production') {
+  //   unexpectedKeyCache = {}
+  // }
 
   let shapeAssertionError
   try {
@@ -147,17 +147,17 @@ export default function combineReducers(reducers) {
       throw shapeAssertionError
     }
 
-    if (process.env.NODE_ENV !== 'production') {
-      const warningMessage = getUnexpectedStateShapeWarningMessage(
-        state,
-        finalReducers,
-        action,
-        unexpectedKeyCache
-      )
-      if (warningMessage) {
-        warning(warningMessage)
-      }
-    }
+    // if (process.env.NODE_ENV !== 'production') {
+    //   const warningMessage = getUnexpectedStateShapeWarningMessage(
+    //     state,
+    //     finalReducers,
+    //     action,
+    //     unexpectedKeyCache
+    //   )
+    //   if (warningMessage) {
+    //     warning(warningMessage)
+    //   }
+    // }
 
     let hasChanged = false
     const nextState = {}
