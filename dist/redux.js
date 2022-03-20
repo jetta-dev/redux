@@ -346,29 +346,6 @@ function createStore(reducer, preloadedState, enhancer) {
   }, _ref2[result] = observable, _ref2;
 }
 
-/**
- * Prints a warning in the console if it exists.
- *
- * @param {String} message The warning message.
- * @returns {void}
- */
-function warning(message) {
-  /* eslint-disable no-console */
-  if (typeof console !== 'undefined' && typeof console.error === 'function') {
-    console.error(message);
-  }
-  /* eslint-enable no-console */
-
-
-  try {
-    // This error was thrown as a convenience so that if you enable
-    // "break on all exceptions" in your console,
-    // it would pause the execution at this line.
-    throw new Error(message);
-  } catch (e) {} // eslint-disable-line no-empty
-
-}
-
 function getUndefinedStateErrorMessage(key, action) {
   var actionType = action && action.type;
   var actionDescription = actionType && "action \"" + String(actionType) + "\"" || 'an action';
@@ -416,13 +393,11 @@ function combineReducers(reducers) {
   var finalReducers = {};
 
   for (var i = 0; i < reducerKeys.length; i++) {
-    var key = reducerKeys[i];
-
-    {
-      if (typeof reducers[key] === 'undefined') {
-        warning("No reducer provided for key \"" + key + "\"");
-      }
-    }
+    var key = reducerKeys[i]; // if ("development" !== 'production') {
+    //   if (typeof reducers[key] === 'undefined') {
+    //     warning(`No reducer provided for key "${key}"`)
+    //   }
+    // }
 
     if (typeof reducers[key] === 'function') {
       finalReducers[key] = reducers[key];
